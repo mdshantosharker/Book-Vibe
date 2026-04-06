@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLoaderData, useParams } from "react-router";
 
 const BookDetails = () => {
@@ -7,7 +7,20 @@ const BookDetails = () => {
   const books = useLoaderData();
   //   console.log(books,'books');
   const expectedBook = books.find((book) => book.bookId == bookId);
-  console.log(expectedBook);
+
+  const [storeBook, setStoreBook] = useState([]);
+
+  const handleMarkAsRead = (currentBook) => {
+    const isExistBook = storeBook.find(
+      (book) => book.bookId === currentBook.bookId,
+    );
+    if (isExistBook) {
+      alert("already exit");
+    } else {
+      setStoreBook([...storeBook, currentBook]);
+    }
+    console.log(storeBook);
+  };
   return (
     <>
       <div className="max-w-6xl mx-auto my-10 px-4">
@@ -49,7 +62,12 @@ const BookDetails = () => {
             </div>
 
             <div className="flex gap-4 pt-4">
-              <button className="btn btn-outline btn-primary">Read Now</button>
+              <button
+                className="btn btn-outline btn-primary"
+                onClick={() => handleMarkAsRead(expectedBook)}
+              >
+                Mark as Read
+              </button>
               <button className="btn bg-pink-500 text-white hover:bg-pink-600">
                 Add to Wishlist
               </button>
