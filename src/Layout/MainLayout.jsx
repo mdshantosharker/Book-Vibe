@@ -7,7 +7,6 @@ const MainLayout = () => {
   return (
     <div>
       <Navbar />
-      <Homepage />
       <Outlet />
     </div>
   );
