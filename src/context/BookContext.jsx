@@ -36,7 +36,7 @@ const BookProvider = ({ children }) => {
     if (isExitedBook) {
       toast.error("book is already exist");
     } else {
-      setWishList([...selectedBook, currentBook]);
+      setWishList([...wishList, currentBook]);
       toast.success(`${currentBook.bookName} is added to wish list`);
     }
     // console.log(isExitedBook);
