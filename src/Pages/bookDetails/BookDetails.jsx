@@ -9,10 +9,9 @@ const BookDetails = () => {
   //   console.log(books,'books');
   const expectedBook = books.find((book) => book.bookId == bookId);
 
-  const {handleMarkAsRead} = useContext(BookContext);
+  const { handleMarkAsRead, handleWishList } = useContext(BookContext);
   // console.log(bookContext);
 
-  
   return (
     <>
       <div className="max-w-6xl mx-auto my-10 px-4">
@@ -60,7 +59,10 @@ const BookDetails = () => {
               >
                 Mark as Read
               </button>
-              <button className="btn bg-pink-500 text-white hover:bg-pink-600">
+              <button
+                onClick={() => handleWishList(expectedBook)}
+                className="btn bg-pink-500 text-white hover:bg-pink-600"
+              >
                 Add to Wishlist
               </button>
             </div>

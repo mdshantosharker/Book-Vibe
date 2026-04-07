@@ -2,11 +2,14 @@ import React, { useContext } from "react";
 import { BookContext } from "../../context/BookContext";
 
 const Books = () => {
-  const { selectedBook } = useContext(BookContext);
-  console.log({ selectedBook });
+  const { selectedBook, wishList } = useContext(BookContext);
+  console.log("selectedBook", { selectedBook });
+  console.log("wishList", { wishList });
   return (
-    <div>
-      <h1>this is books</h1>
+    <div className="">
+      read List : {selectedBook.length}
+      <br />
+      wish List : {wishList.length}
     </div>
   );
 };
