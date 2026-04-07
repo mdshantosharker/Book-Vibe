@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useContext } from "react";
+import { BookContext } from "../../context/BookContext";
 
 const Books = () => {
-    return (
-        <div>
-            <h1>this is books</h1>
-        </div>
-    );
+  const { selectedBook } = useContext(BookContext);
+  console.log({ selectedBook });
+  return (
+    <div>
+      <h1>this is books</h1>
+    </div>
+  );
 };
 
 export default Books;

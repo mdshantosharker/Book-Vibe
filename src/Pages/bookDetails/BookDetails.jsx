@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useLoaderData, useParams } from "react-router";
+import { BookContext } from "../../context/BookContext";
 
 const BookDetails = () => {
   const { bookId } = useParams();
@@ -8,19 +9,10 @@ const BookDetails = () => {
   //   console.log(books,'books');
   const expectedBook = books.find((book) => book.bookId == bookId);
 
-  const [storeBook, setStoreBook] = useState([]);
+  const {handleMarkAsRead} = useContext(BookContext);
+  // console.log(bookContext);
 
-  const handleMarkAsRead = (currentBook) => {
-    const isExistBook = storeBook.find(
-      (book) => book.bookId === currentBook.bookId,
-    );
-    if (isExistBook) {
-      alert("already exit");
-    } else {
-      setStoreBook([...storeBook, currentBook]);
-    }
-    console.log(storeBook);
-  };
+  
   return (
     <>
       <div className="max-w-6xl mx-auto my-10 px-4">
