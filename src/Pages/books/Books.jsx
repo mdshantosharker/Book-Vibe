@@ -1,15 +1,31 @@
-import React, { useContext } from "react";
-import { BookContext } from "../../context/BookContext";
+import React, { useState } from "react";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import ListedReadList from "../../Components/homepage/ListedBooks/ListedReadList";
 import ListedWishList from "../../Components/homepage/ListedBooks/ListedWishList";
 const Books = () => {
-  const { selectedBook, wishList } = useContext(BookContext);
-  console.log("selectedBook", { selectedBook });
-  console.log("wishList", { wishList });
+  const [sortingType, setSortingType] = useState("");
+
   return (
     <div className="container mx-auto my-3">
+      <div className="flex justify-center">
+        <div className="dropdown dropdown-start">
+          <div tabIndex={0} role="button" className="btn m-1">
+            Sort by : {sortingType}⬇️
+          </div>
+          <ul
+            tabIndex="-1"
+            className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
+          >
+            <li onClick={() => setSortingType("pages")}>
+              <a>Pages</a>
+            </li>
+            <li onClick={() => setSortingType("rating")}>
+              <a>rating</a>
+            </li>
+          </ul>
+        </div>
+      </div>
       <Tabs>
         <TabList>
           <Tab>Read Books</Tab>
@@ -17,10 +33,10 @@ const Books = () => {
         </TabList>
 
         <TabPanel>
-          <ListedReadList />
+          <ListedReadList sortingType={sortingType} />
         </TabPanel>
         <TabPanel>
-          <ListedWishList />
+          <ListedWishList sortingType={sortingType} />
         </TabPanel>
       </Tabs>
     </div>

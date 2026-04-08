@@ -1,9 +1,15 @@
 import React, { createContext, useState } from "react";
 import { toast } from "react-toastify";
+import {
+  addReadListToLocalDB,
+  getAllReadListFromLocalDB,
+} from "../utils/localDB";
 
 export const BookContext = createContext();
 const BookProvider = ({ children }) => {
-  const [selectedBook, setSelectedBook] = useState([]);
+  const [selectedBook, setSelectedBook] = useState(() =>
+    getAllReadListFromLocalDB(),
+  );
   const [wishList, setWishList] = useState([]);
 
   const handleMarkAsRead = (currentBook) => {
@@ -15,6 +21,7 @@ const BookProvider = ({ children }) => {
     } else {
       setSelectedBook([...selectedBook, currentBook]);
       toast.success(`${currentBook.bookName} is added to read list`);
+      addReadListToLocalDB(currentBook);
     }
     // console.log(isExitedBook);
     // console.log(currentBook);
